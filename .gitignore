@@ -1,8 +1,35 @@
+# ==================== Build ====================
 target/
+
+# ==================== IDE: IntelliJ ====================
 .idea/
 *.iml
+
+# ==================== IDE: Eclipse ====================
+.classpath
+.factorypath
+.project
+.settings/
+bin/
+
+# ==================== IDE: VS Code ====================
+.vscode/
+
+# ==================== Secrets ====================
+.env
+.env.*
+
+# ==================== Logs ====================
 *.log
 logs/
-.env
+
+# ==================== OS ====================
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# ==================== Framework Generated ====================
+healing-cache.json
+*.bak
+.selector_backups/
 

@@ -1,0 +1,12 @@
+{
+  "name": "staging",
+  "baseUrl": "https://the-internet.herokuapp.com",
+  "pages": {
+    "login": "/login",
+    "checkboxes": "/checkboxes",
+    "dropdown": "/dropdown",
+    "forgotPassword": "/forgot_password",
+    "inputs": "/inputs",
+    "addRemoveElements": "/add_remove_elements/"
+  }
+}

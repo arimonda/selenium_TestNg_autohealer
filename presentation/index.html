@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selenium Automation Framework — AI Auto-Healing</title>
+
+    <!-- Reveal.js (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/theme/black.css" />
+
+    <style>
+      :root{
+        --bg0:#0b1020;
+        --bg1:#101a3a;
+        --c1:#6EE7FF;
+        --c2:#A78BFA;
+        --c3:#34D399;
+        --c4:#F59E0B;
+        --ink:#EAF2FF;
+        --muted:rgba(234,242,255,.78);
+      }
+
+      .reveal {
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+        color: var(--ink);
+      }
+
+      .reveal .slides section {
+        border-radius: 18px;
+      }
+
+      .deck-bg {
+        background:
+          radial-gradient(1200px 600px at 20% 15%, rgba(110,231,255,.18), transparent 60%),
+          radial-gradient(900px 500px at 80% 25%, rgba(167,139,250,.18), transparent 60%),
+          radial-gradient(900px 500px at 65% 90%, rgba(52,211,153,.14), transparent 60%),
+          linear-gradient(135deg, var(--bg0), var(--bg1));
+      }
+
+      .glass {
+        background: rgba(15, 23, 42, 0.55);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 18px 60px rgba(0,0,0,.35);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 18px;
+        padding: 22px 26px;
+      }
+
+      .title {
+        font-size: 56px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+      }
+      .subtitle { font-size: 24px; color: var(--muted); margin-top: 14px; }
+
+      .pillrow { display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px;}
+      .pill {
+        display:inline-flex; align-items:center; gap:10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(0,0,0,.22);
+        color: var(--muted);
+        font-size: 16px;
+      }
+      .dot { width:10px; height:10px; border-radius:999px; display:inline-block; }
+      .dot.c1 { background: var(--c1); }
+      .dot.c2 { background: var(--c2); }
+      .dot.c3 { background: var(--c3); }
+      .dot.c4 { background: var(--c4); }
+
+      .grid2 { display:grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items: center;}
+      .grid2r { display:grid; grid-template-columns: .9fr 1.1fr; gap: 18px; align-items: center;}
+
+      .kpi {
+        display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      }
+      .card {
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.10);
+        background: rgba(2, 6, 23, 0.35);
+      }
+      .card .h { font-size: 14px; color: var(--muted); }
+      .card .v { font-size: 22px; margin-top: 6px; }
+
+      .img {
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.12);
+        box-shadow: 0 18px 60px rgba(0,0,0,.30);
+      }
+
+      .reveal ul { margin-top: 10px; }
+      .reveal li { margin: 10px 0; }
+
+      .small { font-size: 16px; color: var(--muted); }
+      .tiny { font-size: 13px; color: rgba(234,242,255,.68); }
+
+      .tag {
+        display:inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        font-size: 14px;
+        color: var(--muted);
+        margin-right: 8px;
+      }
+
+      pre.mermaid {
+        background: rgba(2, 6, 23, 0.35);
+        border: 1px solid rgba(255,255,255,0.10);
+        border-radius: 16px;
+        padding: 16px;
+        overflow: hidden;
+      }
+
+      /* slide-specific helpers */
+      .cover {
+        position: relative;
+        min-height: 620px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      }
+      .cover img {
+        position:absolute; inset:0;
+        width:100%; height:100%;
+        object-fit: cover;
+        filter: saturate(1.15) contrast(1.05);
+      }
+      .cover .overlay {
+        position:absolute; inset:0;
+        background: linear-gradient(90deg, rgba(2,6,23,.82) 0%, rgba(2,6,23,.45) 55%, rgba(2,6,23,.15) 100%);
+      }
+      .cover .content {
+        position:relative;
+        padding: 56px 56px;
+        max-width: 980px;
+      }
+      .cover .content .title { font-size: 64px; }
+    </style>
+  </head>
+
+  <body class="deck-bg">
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- Slide 1 -->
+        <section>
+          <div class="cover">
+            <img src="assets/cover.png" alt="Cover visual" />
+            <div class="overlay"></div>
+            <div class="content">
+              <div class="title">Selenium Automation Framework</div>
+              <div class="subtitle">Java 17 • TestNG • Smart Actions • AI Auto‑Healing (Optional)</div>
+              <div class="pillrow">
+                <span class="pill"><span class="dot c1"></span>Page Object Model</span>
+                <span class="pill"><span class="dot c2"></span>Annotation‑wired elements</span>
+                <span class="pill"><span class="dot c3"></span>Resilience: cache + validation</span>
+                <span class="pill"><span class="dot c4"></span>Audit logging</span>
+              </div>
+              <div style="margin-top:18px" class="tiny">
+                Presentation deck generated for automation assignment demo
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 2 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">What this framework delivers</div>
+            <div class="grid2" style="margin-top:18px;">
+              <div>
+                <div class="kpi">
+                  <div class="card">
+                    <div class="h">Stability</div>
+                    <div class="v">Explicit waits</div>
+                    <div class="tiny">Centralized in `BasePage`</div>
+                  </div>
+                  <div class="card">
+                    <div class="h">Maintainability</div>
+                    <div class="v">POM + Annotations</div>
+                    <div class="tiny">Less locator boilerplate</div>
+                  </div>
+                  <div class="card">
+                    <div class="h">Resilience</div>
+                    <div class="v">AI Healing</div>
+                    <div class="tiny">Optional + audited</div>
+                  </div>
+                </div>
+                <ul>
+                  <li><b>Clean structure</b>: Tests → Pages → Core → AI/Utils</li>
+                  <li><b>Low setup</b>: Selenium Manager for driver handling</li>
+                  <li><b>Production-minded</b>: redaction, cache, validation guardrails</li>
+                </ul>
+              </div>
+              <div>
+                <img class="img" src="assets/architecture.png" alt="Layered architecture visual" />
+                <div class="tiny" style="margin-top:8px;">Layered design keeps responsibilities clear.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 3 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">The problem we solve</div>
+            <div class="grid2r" style="margin-top:18px;">
+              <div>
+                <pre class="mermaid">
+flowchart LR
+  A[UI Changes] --> B[Broken Selectors]
+  B --> C[Test Failures]
+  C --> D[Maintenance Cost]
+  D --> E[Slow Feedback]
+                </pre>
+                <div class="tiny">Typical automation pain: fragility + time spent fixing locators.</div>
+              </div>
+              <div>
+                <ul>
+                  <li><b>Flaky runs</b> from timing and dynamic DOM states</li>
+                  <li><b>Selector churn</b> during UI changes</li>
+                  <li><b>Repeated boilerplate</b> (waits/locators) across tests</li>
+                  <li><b>Limited traceability</b> on what changed and why</li>
+                </ul>
+                <div style="margin-top:14px;">
+                  <span class="tag">Solution</span>
+                  Centralize waits + encapsulate pages + add optional AI healing with audit trail.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 4 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">Architecture overview</div>
+            <div class="grid2" style="margin-top:18px;">
+              <div>
+                <pre class="mermaid">
+flowchart TB
+  T[TestNG Tests] --> F[SeleniumFactory]
+  T --> P[Page Objects]
+  P --> B[BasePage (waits + smart actions)]
+  P --> E[ElementInitializer (reflection)]
+  E --> S[SmartElement (By + driver)]
+  B -->|Timeout| A[AIHealingEngine]
+  A --> L[AI audit log]
+                </pre>
+                <div class="tiny">Simple flow: Tests call Pages; Pages rely on Core; Core optionally triggers AI healing.</div>
+              </div>
+              <div>
+                <img class="img" src="assets/architecture.png" alt="Architecture image" />
+                <div class="tiny" style="margin-top:8px;">Clean layering improves readability and ownership.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 5 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">Core implementation (highlights)</div>
+            <div class="grid2" style="margin-top:18px;">
+              <div>
+                <ul>
+                  <li><b>`SeleniumFactory`</b>: singleton WebDriver + config (`browser.type`, `browser.headless`)</li>
+                  <li><b>`BasePage`</b>: navigation + explicit waits + `smartClick/smartFill`</li>
+                  <li><b>`@SeleniumSelector`</b>: clean element declarations</li>
+                  <li><b>`ElementInitializer`</b>: reflection wiring → `SmartElement(By)`</li>
+                </ul>
+                <div class="small" style="margin-top:10px;">
+                  Selector syntax: <b>CSS (default)</b> or <b>XPath</b> with <code>xpath=...</code>
+                </div>
+              </div>
+              <div>
+                <pre class="mermaid">
+sequenceDiagram
+  participant Test as Test
+  participant Page as Page Object
+  participant Core as BasePage
+  participant Wait as WebDriverWait
+  Test->>Page: call action()
+  Page->>Core: smartClick(selector)
+  Core->>Wait: elementToBeClickable(By)
+  Wait-->>Core: WebElement
+  Core->>Core: click()
+                </pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 6 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">Smart Actions: stable by default</div>
+            <div class="grid2r" style="margin-top:18px;">
+              <div>
+                <pre class="mermaid">
+flowchart TB
+  A[smartClick / smartFill] --> B[Parse selector to By]
+  B --> C[Explicit wait]
+  C -->|Success| D[Act (click/sendKeys)]
+  C -->|Timeout| E[AI Healing attempt]
+                </pre>
+                <div class="tiny">Centralized waits reduce flakiness and keep tests readable.</div>
+              </div>
+              <div>
+                <ul>
+                  <li><b>Explicit waits only</b> (implicit wait set to 0)</li>
+                  <li><b>One retry policy</b> to avoid hiding real failures</li>
+                  <li><b>Stale element retry</b> once (common transient Selenium issue)</li>
+                  <li><b>Audit friendly</b> logs for healing decisions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 7 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">AI Healing pipeline</div>
+            <div class="grid2" style="margin-top:18px;">
+              <div>
+                <img class="img" src="assets/ai-healing.png" alt="AI healing visual" />
+                <div class="tiny" style="margin-top:8px;">Optional: enabled only when `OPENAI_API_KEY` is configured.</div>
+              </div>
+              <div>
+                <pre class="mermaid">
+sequenceDiagram
+  participant Core as BasePage
+  participant Engine as AIHealingEngine
+  participant Clean as HtmlCleaner
+  participant Redact as HtmlRedactor
+  participant LLM as LLMClient/OpenAI
+  Core->>Engine: heal(failed, pageSource)
+  Engine->>Clean: cleanHtml()
+  Engine->>Redact: redact()
+  Engine->>LLM: sendPrompt(prompt)
+  LLM-->>Engine: healed selector
+  Engine-->>Core: healed selector
+                </pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 8 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">AI hardening (real-world guardrails)</div>
+            <div class="grid2r" style="margin-top:18px;">
+              <div>
+                <pre class="mermaid">
+flowchart LR
+  A[Timeout] --> B[Cache?]
+  B -->|Hit| C[Validate selector]
+  B -->|Miss| D[LLM heal]
+  D --> C
+  C -->|Valid| E[Retry once]
+  C -->|Invalid| F[Bypass cache once + fresh heal]
+                </pre>
+                <div class="tiny">Resilience without chaos: cache + validation + single retry.</div>
+              </div>
+              <div>
+                <ul>
+                  <li><b>Redaction</b>: best‑effort masking before prompts/audit logs</li>
+                  <li><b>Persistent cache</b>: `healing-cache.json` stores successful heals</li>
+                  <li><b>Validation</b>: accept only selectors that match <b>exactly one</b> element and are actionable</li>
+                  <li><b>Cache bypass</b>: if cached heal is stale, bypass once and ask again</li>
+                </ul>
+                <div class="small" style="margin-top:8px;">
+                  Cache path override: <code>mvn test "-Dhealing.cache.path=...json"</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 9 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">Demo story: Login test</div>
+            <div class="grid2" style="margin-top:18px;">
+              <div>
+                <pre class="mermaid">
+sequenceDiagram
+  participant Test as LoginTest
+  participant Factory as SeleniumFactory
+  participant Page as LoginPage
+  Test->>Factory: getDriver()
+  Test->>Page: new LoginPage(driver)
+  Test->>Page: navigateTo(url)
+  Test->>Page: enterUsername()
+  Test->>Page: enterPassword()
+  Test->>Page: clickLogin()
+                </pre>
+                <div class="tiny">Business flow stays readable; implementation details stay in Page/Core.</div>
+              </div>
+              <div>
+                <div class="card">
+                  <div class="h">Run command</div>
+                  <div class="v" style="font-size:18px;">
+                    <code>mvn test</code>
+                  </div>
+                  <div class="tiny">AI healing is optional; set `OPENAI_API_KEY` to enable.</div>
+                </div>
+                <div class="card" style="margin-top:12px;">
+                  <div class="h">Evidence</div>
+                  <div class="v" style="font-size:18px;">Audit trail</div>
+                  <div class="tiny"><code>logs/ai-healing-audit.log</code> records attempts and results.</div>
+                </div>
+                <div class="card" style="margin-top:12px;">
+                  <div class="h">Speed-up</div>
+                  <div class="v" style="font-size:18px;">Healing cache</div>
+                  <div class="tiny"><code>healing-cache.json</code> avoids repeated LLM calls.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Slide 10 -->
+        <section>
+          <div class="glass">
+            <div class="title" style="font-size:44px;">Why this framework (summary)</div>
+            <div class="grid2r" style="margin-top:18px;">
+              <div>
+                <div class="kpi">
+                  <div class="card">
+                    <div class="h">Clarity</div>
+                    <div class="v">POM</div>
+                    <div class="tiny">Readable tests</div>
+                  </div>
+                  <div class="card">
+                    <div class="h">Reliability</div>
+                    <div class="v">Waits</div>
+                    <div class="tiny">Less flake</div>
+                  </div>
+                  <div class="card">
+                    <div class="h">Resilience</div>
+                    <div class="v">AI</div>
+                    <div class="tiny">Optional</div>
+                  </div>
+                </div>
+                <ul style="margin-top:12px;">
+                  <li><b>Professional engineering</b>: safety (redaction) + determinism (validation)</li>
+                  <li><b>Maintainable</b>: selectors + actions centralized, minimal duplication</li>
+                  <li><b>Explainable</b>: audit logs + cache provide traceability</li>
+                </ul>
+              </div>
+              <div>
+                <pre class="mermaid">
+flowchart TB
+  A[Today] --> B[Stable core + optional AI]
+  B --> C[Next: ThreadLocal drivers]
+  B --> D[Next: richer locator DSL]
+  B --> E[Next: reporting + screenshots]
+                </pre>
+                <div class="small" style="margin-top:10px;">
+                  Thank you — Questions?
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+    <script>
+      // Reveal init
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        transition: 'fade',
+        backgroundTransition: 'fade'
+      });
+
+      // Mermaid init: render diagrams after Reveal is ready
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'dark',
+        themeVariables: {
+          primaryColor: '#111827',
+          primaryTextColor: '#EAF2FF',
+          primaryBorderColor: 'rgba(255,255,255,0.16)',
+          lineColor: 'rgba(234,242,255,0.55)',
+          secondaryColor: 'rgba(110,231,255,0.22)',
+          tertiaryColor: 'rgba(167,139,250,0.16)'
+        }
+      });
+
+      async function renderMermaid() {
+        const blocks = Array.from(document.querySelectorAll('pre.mermaid'));
+        for (const block of blocks) {
+          const code = block.textContent;
+          const id = 'mmd-' + Math.random().toString(16).slice(2);
+          const { svg } = await mermaid.render(id, code);
+          block.innerHTML = svg;
+        }
+      }
+
+      Reveal.on('ready', renderMermaid);
+      Reveal.on('slidechanged', renderMermaid);
+    </script>
+  </body>
+</html>
+

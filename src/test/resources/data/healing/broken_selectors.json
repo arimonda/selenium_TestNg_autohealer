@@ -1,0 +1,22 @@
+{
+  "description": "Intentionally broken selectors to demonstrate AI self-healing",
+  "testUrl": "https://the-internet.herokuapp.com/login",
+  "selectors": {
+    "usernameField": {
+      "broken":  "input[data-qa='user-login-field']",
+      "correct": "#username"
+    },
+    "passwordField": {
+      "broken":  "#pass-field-old",
+      "correct": "#password"
+    },
+    "loginButton": {
+      "broken":  "button.btn-primary-login",
+      "correct": "button[type='submit']"
+    }
+  },
+  "testData": {
+    "username": "tomsmith",
+    "password": "SuperSecretPassword!"
+  }
+}

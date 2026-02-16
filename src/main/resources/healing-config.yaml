@@ -1,0 +1,40 @@
+# ============================================================
+# AI Self-Healing Test Engine - Configuration
+# ============================================================
+
+healing:
+  # Global toggle for the self-healing feature
+  enabled: true
+
+  # How many AI-suggested locators to try before giving up (1-5)
+  retry.count: 5
+
+  # Whether to modify Page Object source files automatically
+  auto.update.code: true
+
+  # Maximum HTML characters to send in the AI prompt
+  max.html.chars: 200000
+
+ai:
+  # Defines which AI model to use: GEMINI, OPENAI, CLAUDE
+  provider: GEMINI
+
+  # Provider-specific settings (API keys come from .env for security)
+  gemini:
+    model: gemini-2.0-flash
+  openai:
+    model: gpt-4o
+  claude:
+    model: claude-sonnet-4-20250514
+
+screenshot:
+  # Capture screenshot on failure
+  enabled: true
+  # Directory for saved screenshots
+  directory: logs/screenshots
+
+dom:
+  # Capture simplified DOM tree (strips scripts, styles, SVGs, meta tags)
+  simplified: true
+  # Capture computed CSS styles of nearby elements
+  capture.css: true

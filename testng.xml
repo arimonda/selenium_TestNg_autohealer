@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AI Self-Healing Test Suite" parallel="none" thread-count="1">
+
+    <listeners>
+        <!-- AI Self-Healing Listeners -->
+        <listener class-name="com.automation.listeners.AiHealingListener"/>
+        <listener class-name="com.automation.listeners.HealingReportListener"/>
+        <listener class-name="com.automation.listeners.RetryTransformer"/>
+    </listeners>
+
+    <!-- HEALING DEMO: Tests with intentionally broken selectors (run first) -->
+    <test name="AI Healing Demo Tests">
+        <classes>
+            <class name="com.automation.tests.HealingDemoTest"/>
+        </classes>
+    </test>
+
+    <!-- FUNCTIONAL: Tests with correct selectors -->
+    <test name="Login Tests">
+        <classes>
+            <class name="com.automation.tests.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Checkbox Tests">
+        <classes>
+            <class name="com.automation.tests.CheckboxTest"/>
+        </classes>
+    </test>
+
+    <test name="Dropdown Tests">
+        <classes>
+            <class name="com.automation.tests.DropdownTest"/>
+        </classes>
+    </test>
+</suite>
